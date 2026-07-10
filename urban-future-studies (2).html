@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>도시의 미래 탐구 | 교육과정 박람회</title>
+<style>
+:root{
+  --navy:#0E2A47;
+  --navy-deep:#081D33;
+  --cyan:#7EC8E3;
+  --cyan-dim:rgba(126,200,227,0.28);
+  --paper:#F6F2E7;
+  --paper-dark:#ECE5D4;
+  --ink:#16202B;
+  --ink-soft:#4A5A68;
+  --signal:#E8622C;
+  --signal-deep:#C94E1F;
+  --line:rgba(126,200,227,0.16);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  background:var(--navy);
+  color:var(--paper);
+  overflow:hidden;
+  padding:64px 24px 96px;
+}
+.hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:40px 40px;
+  opacity:0.9;
+}
+.hero-inner{
+  position:relative;
+  max-width:1080px;
+  margin:0 auto;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:12.5px;
+  letter-spacing:0.12em;
+  color:var(--cyan);
+  border:1px solid var(--cyan-dim);
+  padding:6px 14px;
+  border-radius:999px;
+  margin-bottom:28px;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--signal);}
+
+.subject-code{
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  color:var(--cyan);
+  font-size:14px;
+  letter-spacing:0.08em;
+  margin:0 0 10px;
+}
+h1.title{
+  font-size:clamp(42px,8vw,86px);
+  font-weight:800;
+  line-height:1.05;
+  margin:0 0 20px;
+  letter-spacing:-0.02em;
+}
+h1.title .stroke{
+  -webkit-text-stroke:1.5px var(--cyan);
+  color:transparent;
+}
+.tagline{
+  font-size:clamp(16px,2.4vw,20px);
+  color:#C9D6DE;
+  max-width:560px;
+  margin:0 0 36px;
+  font-weight:400;
+}
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-bottom:56px;
+}
+.chip{
+  font-size:13px;
+  padding:8px 16px;
+  border-radius:999px;
+  background:rgba(246,242,231,0.08);
+  border:1px solid rgba(246,242,231,0.18);
+  color:#E7EDF0;
+}
+
+/* hero skyline illustration */
+.skyline{
+  width:100%;
+  max-width:820px;
+  display:block;
+  margin:0 auto;
+}
+.skyline-caption{
+  text-align:center;
+  font-size:12px;
+  color:#7C93A2;
+  margin-top:14px;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  letter-spacing:0.04em;
+}
+
+/* ---------- SECTION SHELL ---------- */
+section{
+  max-width:1080px;
+  margin:0 auto;
+  padding:96px 24px;
+}
+.section-head{
+  display:flex;
+  align-items:baseline;
+  gap:16px;
+  margin-bottom:12px;
+}
+.section-num{
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:14px;
+  color:var(--signal);
+  font-weight:600;
+}
+.section-title{
+  font-size:clamp(26px,4vw,36px);
+  font-weight:800;
+  letter-spacing:-0.01em;
+  margin:0;
+}
+.section-sub{
+  color:var(--ink-soft);
+  max-width:640px;
+  margin:0 0 52px;
+  font-size:16px;
+}
+
+/* ---------- UNIT LINE (signature element) ---------- */
+.line-map{
+  position:relative;
+  padding-top:8px;
+}
+.line-track{
+  position:relative;
+  display:flex;
+  gap:0;
+  margin-bottom:8px;
+}
+.line-track::before{
+  content:"";
+  position:absolute;
+  top:9px; left:20px; right:20px;
+  height:3px;
+  background:repeating-linear-gradient(90deg, var(--navy) 0 10px, transparent 10px 16px);
+  z-index:0;
+}
+.stop{
+  flex:1;
+  position:relative;
+  z-index:1;
+  padding:0 10px;
+}
+.stop-dot{
+  width:21px;height:21px;
+  border-radius:50%;
+  background:var(--paper);
+  border:3px solid var(--navy);
+  margin-bottom:18px;
+}
+.stop:nth-child(odd) .stop-dot{background:var(--signal);border-color:var(--signal-deep);}
+.unit-cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+.unit-card{
+  background:var(--navy);
+  color:var(--paper);
+  border-radius:4px;
+  padding:26px 20px;
+  min-height:260px;
+  display:flex;
+  flex-direction:column;
+}
+.unit-card:nth-child(odd){background:var(--ink);}
+.unit-code{
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:12px;
+  color:var(--cyan);
+  letter-spacing:0.06em;
+  margin-bottom:10px;
+}
+.unit-name{
+  font-size:18px;
+  font-weight:700;
+  margin:0 0 14px;
+  line-height:1.35;
+}
+.unit-topics{
+  list-style:none;
+  padding:0; margin:0;
+  font-size:13.5px;
+  color:#C9D6DE;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.unit-topics li{
+  padding-left:14px;
+  position:relative;
+}
+.unit-topics li::before{
+  content:"—";
+  position:absolute; left:0; color:var(--signal);
+}
+
+/* ---------- CAREER GRID ---------- */
+.career-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  background:var(--ink);
+  border-radius:4px;
+  overflow:hidden;
+}
+.career-cell{
+  background:var(--paper);
+  padding:26px 22px;
+  transition:background 0.15s ease;
+  border:none;
+  appearance:none;
+  -webkit-appearance:none;
+  text-align:left;
+  display:block;
+  width:100%;
+  font:inherit;
+  color:inherit;
+  margin:0;
+  box-sizing:border-box;
+}
+.career-cell{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.08);}
+@media (hover:hover) and (pointer:fine){
+  .career-cell:hover{background:var(--paper-dark);}
+}
+.career-cell .k-index{
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:11px;
+  color:var(--ink-soft);
+  display:block;
+  margin-bottom:8px;
+}
+.career-cell .k-name{
+  font-size:16.5px;
+  font-weight:700;
+  margin:0 0 6px;
+}
+.career-cell .k-desc{
+  font-size:13px;
+  color:var(--ink-soft);
+  margin:0;
+}
+
+/* ---------- MAJOR DIRECTORY ---------- */
+.major-board{
+  border:1px solid var(--ink);
+  border-radius:4px;
+  padding:8px;
+  background:var(--navy);
+}
+.major-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:20px;
+}
+.major-tag{
+  font-size:14.5px;
+  color:var(--paper);
+  border:1px solid rgba(246,242,231,0.28);
+  padding:9px 18px;
+  border-radius:999px;
+  font-weight:500;
+  white-space:nowrap;
+}
+.major-tag b{color:var(--cyan);font-weight:600;}
+
+/* ---------- 세특 예시 ---------- */
+.record-wrap{
+  background:var(--ink);
+  border-radius:6px;
+  padding:4px;
+}
+.record{
+  background:var(--paper);
+  border-radius:4px;
+  padding:44px;
+  position:relative;
+}
+.record-tag{
+  position:absolute;
+  top:28px; right:28px;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:11px;
+  letter-spacing:0.1em;
+  color:var(--signal-deep);
+  border:1.5px solid var(--signal-deep);
+  padding:4px 10px;
+  border-radius:3px;
+  transform:rotate(3deg);
+}
+.record-head{
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:12.5px;
+  color:var(--ink-soft);
+  border-bottom:1px solid #D8CFB8;
+  padding-bottom:16px;
+  margin-bottom:24px;
+  display:flex;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.record-body{
+  font-size:15.5px;
+  line-height:1.9;
+  color:var(--ink);
+  text-align:justify;
+}
+.record-note{
+  margin-top:28px;
+  padding-top:20px;
+  border-top:1px dashed #C9BE9F;
+  font-size:13px;
+  color:var(--ink-soft);
+}
+.record-note strong{color:var(--ink);}
+.tab-list{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+.tab-pill{
+  font-size:12px;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  background:var(--navy);
+  color:var(--cyan);
+  padding:6px 12px;
+  border-radius:999px;
+}
+
+/* ---------- 탐구주제 추천(매처) ---------- */
+.matcher-panel{
+  background:var(--navy);
+  border-radius:6px;
+  padding:44px;
+}
+.matcher-instruction{
+  color:#C9D6DE;
+  font-size:14.5px;
+  margin:0 0 22px;
+}
+.matcher-instruction .count{
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  color:var(--cyan);
+}
+.keyword-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:28px;
+}
+.keyword-btn{touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.08);
+  cursor:pointer;
+  text-align:left;
+  font-family:-apple-system,BlinkMacSystemFont,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+  font-size:14.5px;
+  font-weight:600;
+  color:var(--paper);
+  background:rgba(246,242,231,0.06);
+  border:1.5px solid rgba(246,242,231,0.22);
+  border-radius:6px;
+  padding:16px 18px;
+  transition:all 0.15s ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .keyword-btn:hover{border-color:var(--cyan);}
+}
+.keyword-btn.active{
+  background:var(--signal);
+  border-color:var(--signal-deep);
+  color:#fff;
+}
+.matcher-btn{touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.08);
+  width:100%;
+  cursor:pointer;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:14px;
+  letter-spacing:0.04em;
+  font-weight:600;
+  color:var(--navy);
+  background:var(--cyan);
+  border:none;
+  border-radius:6px;
+  padding:16px;
+  transition:filter 0.15s ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .matcher-btn:hover{filter:brightness(1.08);}
+}
+.matcher-btn:disabled{opacity:0.45;cursor:not-allowed;}
+
+.matcher-results{
+  margin-top:28px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.matcher-placeholder{
+  margin-top:28px;
+  font-size:13.5px;
+  color:#7C93A2;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+}
+.result-card{
+  background:var(--paper);
+  border-radius:5px;
+  padding:22px 24px;
+  border-left:4px solid var(--signal);
+}
+.result-pair{
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:11.5px;
+  color:var(--signal-deep);
+  letter-spacing:0.05em;
+  margin-bottom:8px;
+}
+.result-title{
+  font-size:16.5px;
+  font-weight:700;
+  margin:0 0 8px;
+  color:var(--ink);
+}
+.result-desc{
+  font-size:13.5px;
+  color:var(--ink-soft);
+  margin:0;
+  line-height:1.7;
+}
+
+@media(max-width:700px){
+  .keyword-grid{grid-template-columns:1fr;}
+  .matcher-panel{padding:28px 22px;}
+}
+
+/* ---------- 진로 카드 확장 ---------- */
+.career-cell{cursor:pointer;}
+.k-name{position:relative;padding-right:24px;}
+.k-toggle{
+  position:absolute;
+  right:0; top:0;
+  color:var(--signal);
+  font-weight:700;
+  font-size:16px;
+  transition:transform 0.2s ease;
+}
+.career-cell.expanded .k-toggle{transform:rotate(45deg);}
+.k-detail{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.28s ease, margin-top 0.28s ease;
+}
+.career-cell.expanded .k-detail{
+  max-height:340px;
+  margin-top:16px;
+}
+.k-detail p{
+  margin:0 0 9px;
+  font-size:12.5px;
+  color:var(--ink-soft);
+  line-height:1.65;
+}
+.k-detail p:last-child{margin-bottom:0;}
+.k-detail strong{
+  color:var(--ink);
+  font-weight:700;
+  margin-right:5px;
+}
+
+/* ---------- 학과 상세 ---------- */
+.major-tag{
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:rgba(0,0,0,0.08);
+  background:none;
+  font-family:-apple-system,BlinkMacSystemFont,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+}
+.major-tag.active{
+  background:var(--signal);
+  border-color:var(--signal-deep);
+  color:#fff;
+}
+.major-detail{
+  margin:0 20px 20px;
+  padding:20px 22px;
+  background:rgba(246,242,231,0.08);
+  border:1px dashed rgba(246,242,231,0.3);
+  border-radius:6px;
+  color:#DCE6EB;
+  font-size:13.5px;
+  line-height:1.75;
+}
+.major-detail .md-name{
+  font-weight:700;
+  color:var(--cyan);
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:12.5px;
+  display:block;
+  margin-bottom:10px;
+  letter-spacing:0.03em;
+}
+.major-detail p{margin:0 0 11px;}
+.major-detail p:last-child{margin-bottom:0;}
+.major-detail strong{
+  color:var(--cyan);
+  font-weight:700;
+  margin-right:6px;
+}
+
+/* ---------- 세특 예시 (계열별 사이드바) ---------- */
+.record-layout{
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:24px;
+  align-items:start;
+}
+.record-sidebar{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  background:var(--paper-dark);
+  border-radius:8px;
+  padding:6px;
+}
+.record-tab{
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:rgba(0,0,0,0.08);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-align:left;
+  background:transparent;
+  border:none;
+  padding:16px 16px;
+  border-radius:5px;
+  cursor:pointer;
+  font-family:-apple-system,BlinkMacSystemFont,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+  font-size:14px;
+  font-weight:600;
+  color:var(--ink);
+  transition:background 0.15s ease, color 0.15s ease;
+}
+.record-tab .rt-icon{font-size:16px;}
+.record-tab .rt-arrow{margin-left:auto;opacity:0.4;font-weight:700;}
+@media (hover:hover) and (pointer:fine){
+  .record-tab:hover:not(.active){background:rgba(22,32,43,0.06);}
+}
+.record-tab.active{background:var(--accent);color:#fff;}
+.record-tab.active .rt-arrow{opacity:1;}
+
+.record-main{
+  background:var(--ink);
+  border-radius:8px;
+  padding:6px;
+}
+.rm-inner{
+  background:var(--paper);
+  border-radius:5px;
+  padding:38px;
+}
+
+.career-focus{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:26px;
+}
+.cf-tag{
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:11.5px;
+  font-weight:700;
+  color:#fff;
+  padding:7px 14px;
+  border-radius:999px;
+  white-space:nowrap;
+  letter-spacing:0.02em;
+}
+.cf-list{
+  font-size:14.5px;
+  color:var(--ink-soft);
+}
+.cf-list strong{color:var(--ink);font-weight:700;}
+
+.record-doc{
+  border:1px solid #DDD3BB;
+  border-radius:6px;
+  padding:28px 30px;
+  margin-bottom:26px;
+}
+.record-doc-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13.5px;
+  font-weight:700;
+  color:var(--ink);
+  border-bottom:1px solid #E4DBC3;
+  padding-bottom:14px;
+  margin-bottom:18px;
+}
+.record-doc p{
+  font-size:15px;
+  line-height:1.9;
+  color:var(--ink);
+  text-align:justify;
+  margin:0 0 14px;
+}
+.record-doc p:last-child{margin-bottom:0;}
+.record-doc strong{font-weight:700;}
+
+.analysis-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:14px;
+}
+.analysis-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.analysis-box{
+  background:#EFEADC;
+  border-radius:6px;
+  padding:18px 20px;
+}
+.analysis-box .ab-label{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:12.5px;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:9px;
+}
+.analysis-box p{
+  margin:0;
+  font-size:13.5px;
+  color:var(--ink-soft);
+  line-height:1.7;
+}
+
+@media(max-width:820px){
+  .record-layout{grid-template-columns:1fr;}
+  .record-sidebar{flex-direction:row;flex-wrap:wrap;}
+  .record-tab{flex:1 1 auto;}
+  .analysis-grid{grid-template-columns:1fr;}
+  .rm-inner{padding:24px 20px;}
+}
+
+/* ---------- 클릭 통계 패널 ---------- */
+.stats-fab{
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:rgba(0,0,0,0.08);
+  position:fixed;
+  right:22px; bottom:22px;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:var(--navy);
+  color:var(--paper);
+  border:none;
+  border-radius:999px;
+  padding:14px 20px;
+  font-family:-apple-system,BlinkMacSystemFont,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+  font-size:13.5px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(14,42,71,0.35);
+}
+@media (hover:hover) and (pointer:fine){
+  .stats-fab:hover{filter:brightness(1.15);}
+}
+
+.stats-overlay{
+  position:fixed; inset:0;
+  background:rgba(8,29,51,0.55);
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.stats-overlay.open{display:flex;}
+.stats-modal{
+  background:var(--paper);
+  border-radius:10px;
+  width:100%;
+  max-width:720px;
+  max-height:84vh;
+  overflow-y:auto;
+  padding:32px;
+}
+.stats-modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:6px;
+}
+.stats-modal-head h3{
+  margin:0;
+  font-size:20px;
+  font-weight:800;
+  color:var(--ink);
+}
+.stats-close{
+  background:none;
+  border:none;
+  font-size:22px;
+  cursor:pointer;
+  color:var(--ink-soft);
+  line-height:1;
+}
+.stats-note{
+  font-size:12.5px;
+  color:var(--ink-soft);
+  margin:0 0 22px;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  line-height:1.6;
+}
+.stats-section{margin-bottom:24px;}
+.stats-section-title{
+  font-size:13px;
+  font-weight:700;
+  color:var(--signal-deep);
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  letter-spacing:0.04em;
+  margin-bottom:10px;
+}
+.stats-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:8px 0;
+  border-bottom:1px solid #E6DEC8;
+  font-size:14px;
+}
+.stats-row:last-child{border-bottom:none;}
+.stats-row .sr-label{flex:1;color:var(--ink);}
+.stats-row .sr-bar{
+  flex:1;
+  height:8px;
+  background:#E6DEC8;
+  border-radius:999px;
+  overflow:hidden;
+}
+.stats-row .sr-bar-fill{
+  height:100%;
+  background:var(--signal);
+  border-radius:999px;
+}
+.stats-row .sr-count{
+  width:34px;
+  text-align:right;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  font-weight:700;
+  color:var(--navy);
+}
+.stats-actions{
+  display:flex;
+  gap:10px;
+  margin-top:8px;
+}
+.stats-actions button{
+  flex:1;
+  cursor:pointer;
+  font-family:-apple-system,BlinkMacSystemFont,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+  font-size:13.5px;
+  font-weight:600;
+  padding:12px;
+  border-radius:6px;
+  border:1px solid var(--ink);
+  background:var(--paper);
+  color:var(--ink);
+}
+.stats-actions button.primary{
+  background:var(--navy);
+  color:#fff;
+  border-color:var(--navy);
+}
+@media(max-width:560px){
+  .stats-modal{padding:22px;}
+}
+
+/* footer */
+footer{
+  background:var(--navy-deep);
+  color:#8CA0AC;
+  text-align:center;
+  padding:40px 24px;
+  font-size:12.5px;
+  font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  letter-spacing:0.04em;
+}
+
+@media(max-width:860px){
+  .unit-cards{grid-template-columns:repeat(2,1fr);}
+  .career-grid{grid-template-columns:repeat(2,1fr);}
+  .line-track{display:none;}
+}
+@media(max-width:560px){
+  .unit-cards{grid-template-columns:1fr;}
+  .career-grid{grid-template-columns:1fr;}
+  .record{padding:28px 22px;}
+  section{padding:64px 20px;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot"></span>2026학년도 교육과정 박람회 · 과목 소개</div>
+    <p class="subject-code">사회과 · 진로 선택 과목 · 12도탐</p>
+    <h1 class="title">도시의<br><span class="stroke">미래</span> 탐구</h1>
+    <p class="tagline">내가 사는 도시를 지리학의 눈으로 다시 읽고, 더 나은 도시의 내일을 설계하는 시간.</p>
+    <div class="hero-meta">
+      <span class="chip">4학점 · 한 학기</span>
+      <span class="chip">2학년 대상</span>
+      <span class="chip">사회 교과군 · 지리 계열</span>
+      <span class="chip">상대평가(5등급)</span>
+    </div>
+
+    <svg class="skyline" viewBox="0 0 820 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="230" x2="820" y2="230" stroke="#7EC8E3" stroke-width="1" opacity="0.4"/>
+      <g stroke="#7EC8E3" stroke-width="1.4" opacity="0.85">
+        <rect x="40" y="140" width="46" height="90"/>
+        <rect x="96" y="100" width="38" height="130"/>
+        <rect x="144" y="160" width="52" height="70"/>
+        <rect x="206" y="70" width="44" height="160"/>
+        <line x1="228" y1="70" x2="228" y2="40"/>
+        <circle cx="228" cy="34" r="5"/>
+        <rect x="260" y="120" width="34" height="110"/>
+        <rect x="304" y="150" width="60" height="80"/>
+        <rect x="376" y="90" width="40" height="140"/>
+        <rect x="426" y="130" width="34" height="100"/>
+        <rect x="470" y="60" width="50" height="170"/>
+        <rect x="530" y="145" width="44" height="85"/>
+        <rect x="584" y="105" width="36" height="125"/>
+        <rect x="630" y="170" width="58" height="60"/>
+        <rect x="698" y="115" width="40" height="115"/>
+        <rect x="748" y="150" width="34" height="80"/>
+      </g>
+      <g stroke="#7EC8E3" stroke-width="0.6" opacity="0.4">
+        <line x1="40" y1="160" x2="86" y2="160"/>
+        <line x1="40" y1="185" x2="86" y2="185"/>
+        <line x1="206" y1="100" x2="250" y2="100"/>
+        <line x1="206" y1="140" x2="250" y2="140"/>
+        <line x1="206" y1="180" x2="250" y2="180"/>
+        <line x1="470" y1="90" x2="520" y2="90"/>
+        <line x1="470" y1="130" x2="520" y2="130"/>
+        <line x1="470" y1="170" x2="520" y2="170"/>
+      </g>
+      <path d="M0 230 Q 410 205 820 230" stroke="#E8622C" stroke-width="1.6" stroke-dasharray="2 6" opacity="0.8"/>
+    </svg>
+    <p class="skyline-caption">FIG.01 — 도시의 미래 탐구 : 개념 다이어그램 (원본 일러스트)</p>
+  </div>
+</div>
+
+<section id="units">
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <h2 class="section-title">교과 내용 소개</h2>
+  </div>
+  <p class="section-sub">한 학기 동안 네 개의 정거장을 지나며, 도시를 보는 눈을 단계적으로 넓혀갑니다. 지리학적 이해에서 출발해 도시 문제 진단, 그리고 대안 설계로 이어지는 탐구 노선입니다.</p>
+
+  <div class="line-map">
+    <div class="line-track">
+      <div class="stop"><div class="stop-dot"></div></div>
+      <div class="stop"><div class="stop-dot"></div></div>
+      <div class="stop"><div class="stop-dot"></div></div>
+      <div class="stop"><div class="stop-dot"></div></div>
+    </div>
+    <div class="unit-cards">
+      <div class="unit-card">
+        <span class="unit-code">12도탐01 · 정거장 1</span>
+        <p class="unit-name">삶의 공간, 도시</p>
+        <ul class="unit-topics">
+          <li>도시의 의미와 도시적 생활양식</li>
+          <li>도시의 발달 과정과 유형 비교</li>
+          <li>'살기 좋은 도시'를 보는 다양한 관점</li>
+        </ul>
+      </div>
+      <div class="unit-card">
+        <span class="unit-code">12도탐02 · 정거장 2</span>
+        <p class="unit-name">변화하는 도시</p>
+        <ul class="unit-topics">
+          <li>도시 체계와 공간 구조의 재구성</li>
+          <li>문화 자산·건축과 도시 브랜딩</li>
+          <li>첨단산업·스마트도시와 도시의 미래상</li>
+        </ul>
+      </div>
+      <div class="unit-card">
+        <span class="unit-code">12도탐03 · 정거장 3</span>
+        <p class="unit-name">도시 문제와 공간 정의</p>
+        <ul class="unit-topics">
+          <li>도시 환경 문제와 재난 취약성</li>
+          <li>주거 문제와 거주지 분리</li>
+          <li>이주에 따른 인구 구성 변화와 공존</li>
+        </ul>
+      </div>
+      <div class="unit-card">
+        <span class="unit-code">12도탐04 · 정거장 4</span>
+        <p class="unit-name">도시의 미래</p>
+        <ul class="unit-topics">
+          <li>지속가능성과 회복력 있는 도시계획</li>
+          <li>도시 혁신 사례 탐구</li>
+          <li>시민참여와 도시 공공성 높이기</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="careers">
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <h2 class="section-title">이 과목과 만나는 진로</h2>
+  </div>
+  <p class="section-sub">도시를 다루는 직업은 생각보다 훨씬 다양합니다. 카드를 눌러 하는 일, 필요한 역량, 진출 분야를 자세히 확인해 보세요.</p>
+
+  <div class="career-grid">
+    <button type="button" class="career-cell">
+      <span class="k-index">01</span>
+      <p class="k-name">도시계획가 · 도시설계가<span class="k-toggle">+</span></p>
+      <p class="k-desc">토지이용과 공간구조를 설계하고 재생 계획을 수립</p>
+      <div class="k-detail">
+        <p><strong>하는 일</strong>지구단위계획·재개발 계획을 수립하고, 용도지역·용적률 등 토지이용 규제안을 설계</p>
+        <p><strong>필요 역량</strong>공간분석력, 도시계획 법규 이해, 주민·행정 간 협의 조정 능력</p>
+        <p><strong>진출 분야</strong>지자체 도시계획과, 도시계획 설계사무소, LH·SH공사, 국토연구원</p>
+      </div>
+    </button>
+    <button type="button" class="career-cell">
+      <span class="k-index">02</span>
+      <p class="k-name">공간정보(GIS) 분석가<span class="k-toggle">+</span></p>
+      <p class="k-desc">지리 데이터를 수집·시각화해 도시 현상을 진단</p>
+      <div class="k-detail">
+        <p><strong>하는 일</strong>위성·드론 영상과 통계자료를 지도로 변환해 도시 문제를 시각적으로 진단</p>
+        <p><strong>필요 역량</strong>GIS 프로그램 활용 능력, 통계 분석력, 데이터 시각화 감각</p>
+        <p><strong>진출 분야</strong>국토지리정보원, 공간정보 전문기업, 스마트시티 사업단, 연구소</p>
+      </div>
+    </button>
+    <button type="button" class="career-cell">
+      <span class="k-index">03</span>
+      <p class="k-name">교통공학 엔지니어<span class="k-toggle">+</span></p>
+      <p class="k-desc">대중교통 체계와 도로망을 설계·최적화</p>
+      <div class="k-detail">
+        <p><strong>하는 일</strong>교통량 조사·예측, 신호체계 및 도로 설계, 대중교통 노선·배차 계획 수립</p>
+        <p><strong>필요 역량</strong>교통 시뮬레이션 프로그램 활용, 통계 분석, 현장조사 역량</p>
+        <p><strong>진출 분야</strong>한국교통연구원, 지자체 교통정책과, 교통엔지니어링 전문업체</p>
+      </div>
+    </button>
+    <button type="button" class="career-cell">
+      <span class="k-index">04</span>
+      <p class="k-name">스마트시티 기획자<span class="k-toggle">+</span></p>
+      <p class="k-desc">정보통신 기술을 도시 인프라에 접목</p>
+      <div class="k-detail">
+        <p><strong>하는 일</strong>IoT 센서 기반 인프라 기획, 도시 데이터 플랫폼 설계, 시민 서비스(앱 등) 기획</p>
+        <p><strong>필요 역량</strong>기술 이해력, 서비스 기획력, 여러 분야 전문가와의 협업 능력</p>
+        <p><strong>진출 분야</strong>스마트시티 국가시범단지 사업단, IT·플랫폼 기업, 지자체 스마트도시과</p>
+      </div>
+    </button>
+    <button type="button" class="career-cell">
+      <span class="k-index">05</span>
+      <p class="k-name">건축가 · 도시설계 건축가<span class="k-toggle">+</span></p>
+      <p class="k-desc">경관과 장소성을 고려한 건축·도시 공간 창작</p>
+      <div class="k-detail">
+        <p><strong>하는 일</strong>건축물 설계 및 인허가 도면 작성, 경관·동선 계획, 지구단위계획 참여</p>
+        <p><strong>필요 역량</strong>공간 설계력, 건축 법규 이해, 3D 모델링 도구 활용 능력</p>
+        <p><strong>진출 분야</strong>건축사사무소, 도시설계 전문업체, 공공기관 설계부서</p>
+      </div>
+    </button>
+    <button type="button" class="career-cell">
+      <span class="k-index">06</span>
+      <p class="k-name">도시행정가 · 공공정책 연구원<span class="k-toggle">+</span></p>
+      <p class="k-desc">도시 정책을 입안하고 시민참여 제도를 설계</p>
+      <div class="k-detail">
+        <p><strong>하는 일</strong>도시 정책 입안 및 조례 작성, 주민참여예산제 등 참여 제도 설계, 정책 평가</p>
+        <p><strong>필요 역량</strong>정책 분석력, 행정 절차 이해, 시민 의견을 조율하는 소통 능력</p>
+        <p><strong>진출 분야</strong>지방자치단체, 국토연구원, 정책 연구소, 공공기관</p>
+      </div>
+    </button>
+    <button type="button" class="career-cell">
+      <span class="k-index">07</span>
+      <p class="k-name">부동산 개발·자산 전문가<span class="k-toggle">+</span></p>
+      <p class="k-desc">개발 이익과 지역 형평성을 함께 고려한 개발 기획</p>
+      <div class="k-detail">
+        <p><strong>하는 일</strong>개발사업 타당성 분석, 부동산 자산가치 평가, 투자·분양 전략 기획</p>
+        <p><strong>필요 역량</strong>경제·재무 분석력, 시장 조사력, 법률·세무 기초 지식</p>
+        <p><strong>진출 분야</strong>부동산 개발사, 자산운용사, 감정평가법인, 건설사 기획부서</p>
+      </div>
+    </button>
+    <button type="button" class="career-cell">
+      <span class="k-index">08</span>
+      <p class="k-name">환경·재난 컨설턴트<span class="k-toggle">+</span></p>
+      <p class="k-desc">도시의 회복력을 높이는 환경·안전 대책 수립</p>
+      <div class="k-detail">
+        <p><strong>하는 일</strong>개발사업 환경영향평가, 침수·산사태 등 재난 취약성 분석, 안전 대책 수립</p>
+        <p><strong>필요 역량</strong>환경과학 지식, 리스크 분석력, 현장 조사 역량</p>
+        <p><strong>진출 분야</strong>환경컨설팅사, 재난안전연구원, 지자체 안전정책과</p>
+      </div>
+    </button>
+    <button type="button" class="career-cell">
+      <span class="k-index">09</span>
+      <p class="k-name">도시사회 연구원<span class="k-toggle">+</span></p>
+      <p class="k-desc">거주지 분리, 젠트리피케이션 등 도시 현상을 연구</p>
+      <div class="k-detail">
+        <p><strong>하는 일</strong>거주지 분리·젠트리피케이션 등 도시 사회현상 조사, 설문·인터뷰 기반 연구, 정책 제언</p>
+        <p><strong>필요 역량</strong>사회조사 방법론, 통계 분석, 보고서·논문 작성 능력</p>
+        <p><strong>진출 분야</strong>대학·정부출연 연구소, 사회정책연구원, 도시연구소</p>
+      </div>
+    </button>
+  </div>
+</section>
+
+<section id="majors">
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <h2 class="section-title">관련 학과</h2>
+  </div>
+  <p class="section-sub">진학 후 더 깊이 배울 수 있는 대표 학과들입니다. 학과를 클릭하면 무엇을 배우는지 볼 수 있어요.</p>
+
+  <div class="major-board">
+    <div class="major-list" id="majorList">
+      <button class="major-tag" data-major="지리학과"><b>지리학과</b></button>
+      <button class="major-tag" data-major="도시공학과">도시공학과</button>
+      <button class="major-tag" data-major="도시행정학과">도시행정학과</button>
+      <button class="major-tag" data-major="도시계획·부동산학과">도시계획·부동산학과</button>
+      <button class="major-tag" data-major="건축학과">건축학과</button>
+      <button class="major-tag" data-major="교통공학과">교통공학과</button>
+      <button class="major-tag" data-major="환경학과">환경학과</button>
+      <button class="major-tag" data-major="사회학과">사회학과</button>
+      <button class="major-tag" data-major="지역학과">지역학과</button>
+      <button class="major-tag" data-major="행정학과">행정학과</button>
+      <button class="major-tag" data-major="공공정책학과">공공정책학과</button>
+      <button class="major-tag" data-major="스마트시티학과">스마트시티학과</button>
+    </div>
+    <div class="major-detail" id="majorDetail">학과 이름을 눌러보면 이곳에 어떤 내용을 배우는지 자세한 설명이 나타나요.</div>
+  </div>
+</section>
+
+<section id="matcher">
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <h2 class="section-title">나의 진로와 탐구주제 매칭하기</h2>
+  </div>
+  <p class="section-sub">관심 있는 진로 키워드를 1개 이상 골라보세요. 이 과목에서 실제로 시도해볼 수 있는 탐구·수행평가 주제를 3가지씩 제안해 드립니다.</p>
+
+  <div class="matcher-panel">
+    <p class="matcher-instruction">키워드를 <span class="count">1개 이상</span> 선택한 뒤 버튼을 눌러주세요. 2개 이상 고르면 조합된 주제도 볼 수 있어요.</p>
+    <div class="keyword-grid" id="keywordGrid"></div>
+    <button class="matcher-btn" id="matchBtn" disabled>탐구 주제 추천받기</button>
+    <div class="matcher-results" id="matchResults"></div>
+    <p class="matcher-placeholder" id="matchPlaceholder">키워드를 먼저 1개 이상 선택해 주세요.</p>
+  </div>
+</section>
+
+<section id="record">
+  <div class="section-head">
+    <span class="section-num">05</span>
+    <h2 class="section-title">교과세특 예시자료</h2>
+  </div>
+  <p class="section-sub">진로 계열별로 실제 작성 예시를 나누어 보여드려요. 왼쪽에서 계열을 고르면, 그 진로와 연결된 탐구 사례와 역량 분석을 확인할 수 있어요.</p>
+
+  <div class="record-layout">
+    <div class="record-sidebar" id="recordSidebar">
+      <button class="record-tab active" data-cat="urbaneng" style="--accent:#2F7A9C">
+        <span class="rt-icon">🏗️</span><span class="rt-label">도시공학 · 스마트시티 계열</span><span class="rt-arrow">›</span>
+      </button>
+      <button class="record-tab" data-cat="society" style="--accent:#B98A2E">
+        <span class="rt-icon">🗺️</span><span class="rt-label">지리교육 및 도시사회학 계열</span><span class="rt-arrow">›</span>
+      </button>
+      <button class="record-tab" data-cat="policy" style="--accent:#4F7A5D">
+        <span class="rt-icon">🏛️</span><span class="rt-label">도시행정 · 공공정책 계열</span><span class="rt-arrow">›</span>
+      </button>
+      <button class="record-tab" data-cat="architecture" style="--accent:#E8622C">
+        <span class="rt-icon">🏙️</span><span class="rt-label">건축 · 부동산개발 계열</span><span class="rt-arrow">›</span>
+      </button>
+    </div>
+    <div class="record-main" id="recordMain"></div>
+  </div>
+</section>
+
+<button class="stats-fab" id="statsFab">📊 클릭 통계 보기</button>
+
+<div class="stats-overlay" id="statsOverlay">
+  <div class="stats-modal">
+    <div class="stats-modal-head">
+      <h3>이 웹페이지 클릭 통계</h3>
+      <button class="stats-close" id="statsClose">✕</button>
+    </div>
+    <p class="stats-note">이 브라우저(기기)에 저장되는 통계입니다 · 부스 노트북 한 대로 운영할 때 누적 집계에 활용하세요 · 캐시 삭제 시 초기화됩니다</p>
+    <div id="statsBody"></div>
+    <div class="stats-actions">
+      <button id="statsCopy">텍스트로 복사</button>
+      <button id="statsReset" class="primary">통계 초기화</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  2026학년도 교육과정 박람회 · 사회과(세계지리) · 도시의 미래 탐구 안내자료
+</footer>
+
+<script>
+const STATS_KEY = 'ufsClickStats';
+
+function trackStat(category, label) {
+  let stats;
+  try {
+    stats = JSON.parse(localStorage.getItem(STATS_KEY) || '{}');
+  } catch (e) {
+    stats = {};
+  }
+  if (!stats[category]) stats[category] = {};
+  stats[category][label] = (stats[category][label] || 0) + 1;
+  try {
+    localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+  } catch (e) {
+    /* storage unavailable (e.g. private mode) — fail silently */
+  }
+}
+
+function ufsReportError(where, err) {
+  try {
+    let banner = document.getElementById('ufsErrorBanner');
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'ufsErrorBanner';
+      banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#C94E1F;color:#fff;font-family:monospace;font-size:11px;line-height:1.5;padding:10px 14px;white-space:pre-wrap;';
+      document.body.appendChild(banner);
+    }
+    banner.textContent += '[' + where + '] ' + (err && err.message ? err.message : err) + '\n';
+  } catch (e) { /* ignore */ }
+}
+
+try {
+const KEYWORDS = [
+  {id:'spatial', label:'🗺️ 공간정보 및 빅데이터'},
+  {id:'architecture', label:'🏙️ 건축 및 도시설계'},
+  {id:'mobility', label:'🚈 교통공학 및 모빌리티'},
+  {id:'environment', label:'🌱 환경 및 지속가능성'},
+  {id:'policy', label:'🏛️ 행정 및 공공정책'},
+  {id:'economy', label:'💰 부동산 및 도시경제'}
+];
+
+const LABEL_MAP = Object.fromEntries(KEYWORDS.map(k => [k.id, k.label]));
+
+const SINGLES = {
+  spatial: [
+    {title:'우리 동네 생활 인프라 접근성 지도 제작', desc:'병원·공원·마트 등 편의시설까지의 도보 거리를 지도화해 생활 인프라 불균형을 진단합니다.'},
+    {title:'인구 이동 데이터로 본 상권 변화 분석', desc:'유동인구·카드매출 공개데이터를 활용해 상권이 뜨고 지는 패턴을 시각화합니다.'},
+    {title:'위성영상으로 본 도시 확장 과정 분석', desc:'시계열 위성영상을 비교해 우리 도시가 어떻게 확장되어 왔는지 추적합니다.'}
+  ],
+  architecture: [
+    {title:'우리 동네 랜드마크 건축물 답사 및 경관 분석', desc:'대표 건축물의 설계 의도와 주변 경관과의 조화를 직접 답사하며 분석합니다.'},
+    {title:'폐공간 재생 아이디어 설계', desc:'방치된 공터나 폐건물을 커뮤니티 공간으로 되살리는 리모델링 안을 제안합니다.'},
+    {title:'학교 공간 재구조화 제안', desc:'우리 학교의 유휴 공간을 학생 친화적으로 재배치하는 설계안을 만들어 봅니다.'}
+  ],
+  mobility: [
+    {title:'등하교 통학로 안전 진단', desc:'통학로의 신호·인도 폭 등 보행 안전 요소를 점검하고 개선안을 제안합니다.'},
+    {title:'배달·물류 이동경로가 만드는 도시 혼잡 분석', desc:'배달 오토바이 이동 패턴이 골목 교통 혼잡에 미치는 영향을 조사합니다.'},
+    {title:'자율주행 시대의 도로 설계 변화 예측', desc:'자율주행차 보급이 도로·주차공간 설계에 가져올 변화를 예측해 봅니다.'}
+  ],
+  environment: [
+    {title:'우리 동네 미세먼지·열섬 체감 지도 만들기', desc:'계절별 체감 데이터를 수집해 환경적으로 취약한 구역을 시각화합니다.'},
+    {title:'도시 하천 복원 사례 비교 분석', desc:'국내외 하천 복원 사례를 비교해 우리 지역 하천에 적용할 방안을 찾습니다.'},
+    {title:'학교 주변 그린인프라(빗물정원 등) 설계', desc:'빗물 유출을 줄이는 소규모 그린인프라 설계안을 직접 그려 봅니다.'}
+  ],
+  policy: [
+    {title:'주민참여예산제 실제 사례 분석', desc:'우리 지역 주민참여예산 사업을 조사하고 개선점을 제안합니다.'},
+    {title:'도시재생 뉴딜사업 정책 비교', desc:'여러 지자체의 도시재생 정책을 비교해 성공 요인을 도출합니다.'},
+    {title:'청소년 대상 도시정책 제안하기', desc:'청소년의 의견을 반영한 공공시설 개선 정책안을 직접 작성해 봅니다.'}
+  ],
+  economy: [
+    {title:'상권 임대료와 공실률의 관계 분석', desc:'우리 동네 상가 임대료 변화와 공실 발생의 상관관계를 조사합니다.'},
+    {title:'신도시 개발이 원도심에 미치는 영향 분석', desc:'신도시 조성 이후 원도심의 상권·인구 변화를 비교해 봅니다.'},
+    {title:'청년 주거비 부담과 대안 주거모델 탐구', desc:'셰어하우스·사회주택 등 대안 주거모델의 효과를 조사합니다.'}
+  ]
+};
+
+const COMBOS = {
+  'architecture|economy': [
+    {title:'재개발 전후 지역 상권 변화 비교 분석', desc:'재개발 전후 상가 구성과 매출 추이를 비교해 경제적 효과를 진단합니다.'},
+    {title:'원주민 재정착 지원 건축 모델 제안', desc:'저렴주택·순환정비 방식으로 원주민이 계속 머물 수 있는 건축안을 설계합니다.'},
+    {title:'랜드마크 건축이 지역 부동산 가치에 미치는 영향', desc:'특정 건축물 준공 전후 인근 지가 변화를 추적해 봅니다.'}
+  ],
+  'architecture|environment': [
+    {title:'친환경 인증 건축물 사례 비교', desc:'국내외 친환경 건축 인증 기준과 실제 적용 사례를 비교 분석합니다.'},
+    {title:'옥상녹화·벽면녹화 확산 방안', desc:'도심 건물에 녹지를 늘릴 수 있는 제도적·설계적 방안을 조사합니다.'},
+    {title:'기후 적응형 학교 건축 리모델링 설계', desc:'폭염·폭우에 강한 학교 건물 개선안을 직접 제안해 봅니다.'}
+  ],
+  'architecture|mobility': [
+    {title:"보행 중심 '15분 도시' 설계", desc:'도보 15분 안에 생활시설을 이용할 수 있는 동네 구조를 재설계합니다.'},
+    {title:'대중교통 연계형 건축(역세권 복합개발) 분석', desc:'역 주변 복합시설 개발이 보행·교통에 미치는 영향을 조사합니다.'},
+    {title:'주차장 축소와 보행공간 확대 설계안', desc:'불필요한 주차공간을 보행·녹지공간으로 전환하는 설계를 제안합니다.'}
+  ],
+  'architecture|policy': [
+    {title:'재개발 정비사업 공공기여 기준 분석', desc:'재개발 시 공원·커뮤니티시설 확보 기준을 조사하고 개선안을 제안합니다.'},
+    {title:'건축 심의제도 비교 연구', desc:'지자체별 건축 심의 기준의 차이를 비교 분석합니다.'},
+    {title:'노후 공공시설 리모델링 정책 제안', desc:'오래된 주민센터·도서관 등의 리모델링 우선순위 정책을 설계합니다.'}
+  ],
+  'architecture|spatial': [
+    {title:'GIS 기반 노후 건축물 분포 분석', desc:'건축연한 데이터를 지도화해 재생이 시급한 건물군을 파악합니다.'},
+    {title:'3D 모델링으로 본 스카이라인 변화', desc:'고도 데이터를 활용해 도시 스카이라인의 변화를 시각화합니다.'},
+    {title:'일조권 침해 지역 공간분석', desc:'신축 건물로 인한 일조 피해 구역을 공간 데이터로 분석합니다.'}
+  ],
+  'economy|environment': [
+    {title:'친환경 건물의 임대료 프리미엄 분석', desc:'친환경 인증 건물과 일반 건물의 임대료 차이를 비교합니다.'},
+    {title:'그린뉴딜 투자가 지역경제에 미치는 효과', desc:'친환경 인프라 투자 사업의 고용·경제 효과를 조사합니다.'},
+    {title:'탄소세 도입이 부동산 시장에 미치는 영향 예측', desc:'탄소세 정책 시나리오별 부동산 가격 변화를 예측해 봅니다.'}
+  ],
+  'economy|mobility': [
+    {title:'역세권 개발과 지역 부동산 가치 분석', desc:'신규 지하철역 개통 전후 인근 지가 변화를 추적합니다.'},
+    {title:'공유 모빌리티 거치대와 상권 매출의 관계', desc:'공유자전거·킥보드 거치 위치와 주변 상가 매출의 상관관계를 조사합니다.'},
+    {title:'자율주행 상용화가 주차장 용도변경에 미칠 영향', desc:'자율주행 확산 시 주차공간 감소가 부동산 개발에 미칠 영향을 예측합니다.'}
+  ],
+  'economy|policy': [
+    {title:'도시재생 뉴딜사업의 정책 효과성 평가', desc:'재생사업 지역의 부동산·상권 변화로 정책 효과를 평가합니다.'},
+    {title:'청년 주거정책 비교 분석', desc:'지자체별 청년 주거지원 정책의 실효성을 비교합니다.'},
+    {title:'임대료 상한제 도입 효과 시뮬레이션', desc:'임대료 규제가 상권 안정에 미치는 효과를 사례로 분석합니다.'}
+  ],
+  'economy|spatial': [
+    {title:'지가 변동 공간분석을 통한 젠트리피케이션 예측', desc:'다년간 지가 데이터를 지도화해 상권 변화가 예상되는 구역을 예측합니다.'},
+    {title:'공실률 공간 매핑', desc:'상가 공실 데이터를 지도화해 쇠퇴하는 상권을 조기에 진단합니다.'},
+    {title:'부동산 가격과 생활 인프라의 상관관계 분석', desc:'편의시설 접근성과 아파트 가격의 상관관계를 공간 데이터로 분석합니다.'}
+  ],
+  'environment|mobility': [
+    {title:'탄소중립 교통체계 전환 시나리오 설계', desc:'대중교통·자전거 중심으로 전환했을 때의 탄소 배출 감소 효과를 계산합니다.'},
+    {title:'통학로 미세먼지 노출 분석', desc:'등하교 시간대 교통량과 미세먼지 농도의 관계를 조사합니다.'},
+    {title:'전기차 충전 인프라 최적 입지 선정', desc:'생활동선 데이터를 활용해 충전소의 최적 위치를 제안합니다.'}
+  ],
+  'environment|policy': [
+    {title:'기후위기 대응 도시계획 조례 제정 방안', desc:'타 지자체의 기후대응 조례를 비교해 우리 지역 조례안 초안을 작성합니다.'},
+    {title:'미세먼지 저감 정책 비교 분석', desc:'지자체별 미세먼지 저감 정책의 효과를 비교합니다.'},
+    {title:'재난 취약지역 안전정책 제안', desc:'침수·산사태 취약 구역의 안전 인프라 정책을 제안합니다.'}
+  ],
+  'environment|spatial': [
+    {title:'도시 열섬 공간분석과 그린인프라 입지 선정', desc:'지표온도 데이터와 녹지 분포를 겹쳐보며 열섬 완화 방안을 제안합니다.'},
+    {title:'침수 취약지역 공간매핑', desc:'고도·배수 데이터를 활용해 침수 위험 구역을 지도화합니다.'},
+    {title:'위성영상 기반 도시 녹지 변화 추적', desc:'시계열 위성영상으로 녹지 면적의 증감을 분석합니다.'}
+  ],
+  'mobility|policy': [
+    {title:'교통약자 이동권 보장 정책 제안', desc:'저상버스·엘리베이터 확충 등 이동권 보장 정책안을 작성합니다.'},
+    {title:'자전거도로 확충 정책 비교', desc:'지자체별 자전거 인프라 정책의 효과를 비교합니다.'},
+    {title:'통학버스 노선 최적화 정책 제안', desc:'통학 수요 데이터를 바탕으로 노선 개편안을 제안합니다.'}
+  ],
+  'mobility|spatial': [
+    {title:'대중교통 접근성 격차 공간매핑', desc:'정류장까지의 도보 거리를 지도화해 교통 사각지대를 발굴합니다.'},
+    {title:'배달 오토바이 이동경로 공간분석', desc:'배달 동선 데이터를 지도화해 골목 혼잡 구간을 파악합니다.'},
+    {title:'통학로 안전 공간분석', desc:'사고다발구간과 통학로를 겹쳐 위험 구간을 시각화합니다.'}
+  ],
+  'policy|spatial': [
+    {title:'공간데이터 기반 정책 의사결정 자료 제작', desc:'인구·시설 데이터를 지도화해 정책 참고자료를 제작합니다.'},
+    {title:'행정구역 개편의 공간적 효과 분석', desc:'구역 통합·분리가 생활권에 미치는 영향을 공간적으로 분석합니다.'},
+    {title:'주민참여형 공간데이터 플랫폼 제안', desc:'주민이 직접 동네 문제를 지도에 표시하는 참여형 플랫폼을 기획합니다.'}
+  ]
+};
+
+const selected = new Set();
+const grid = document.getElementById('keywordGrid');
+const btn = document.getElementById('matchBtn');
+const resultsEl = document.getElementById('matchResults');
+const placeholderEl = document.getElementById('matchPlaceholder');
+
+function renderCard(container, pairLabel, item) {
+  const card = document.createElement('div');
+  card.className = 'result-card';
+  card.innerHTML = `
+    <p class="result-pair">${pairLabel}</p>
+    <p class="result-title">${item.title}</p>
+    <p class="result-desc">${item.desc}</p>
+  `;
+  container.appendChild(card);
+}
+
+function updatePlaceholder() {
+  resultsEl.innerHTML = '';
+  placeholderEl.style.display = 'block';
+  placeholderEl.textContent = selected.size < 1
+    ? '키워드를 먼저 1개 이상 선택해 주세요.'
+    : `${selected.size}개 선택됨 · 버튼을 눌러 추천을 확인하세요.`;
+}
+
+KEYWORDS.forEach(k => {
+  const b = document.createElement('button');
+  b.className = 'keyword-btn';
+  b.type = 'button';
+  b.textContent = k.label;
+  b.dataset.id = k.id;
+  b.addEventListener('click', () => {
+    if (selected.has(k.id)) {
+      selected.delete(k.id);
+      b.classList.remove('active');
+    } else {
+      selected.add(k.id);
+      b.classList.add('active');
+      trackStat('04_키워드 선택', k.label);
+    }
+    btn.disabled = selected.size < 1;
+    updatePlaceholder();
+  });
+  grid.appendChild(b);
+});
+
+btn.addEventListener('click', () => {
+  const chosen = Array.from(selected);
+  trackStat('04_추천받기 클릭', `${chosen.length}개 키워드 조합`);
+  resultsEl.innerHTML = '';
+  placeholderEl.style.display = 'none';
+
+  if (chosen.length === 1) {
+    const id = chosen[0];
+    (SINGLES[id] || []).forEach(item => renderCard(resultsEl, LABEL_MAP[id], item));
+    return;
+  }
+
+  const pairs = [];
+  for (let i = 0; i < chosen.length; i++) {
+    for (let j = i + 1; j < chosen.length; j++) {
+      pairs.push([chosen[i], chosen[j]].sort());
+    }
+  }
+  pairs.forEach(([a, b2]) => {
+    const items = COMBOS[`${a}|${b2}`];
+    if (!items) return;
+    items.forEach(item => renderCard(resultsEl, `${LABEL_MAP[a]} × ${LABEL_MAP[b2]}`, item));
+  });
+});
+} catch (err) { ufsReportError('04 탐구주제 매처', err); }
+
+/* 진로 카드 펼치기/접기 */
+try {
+document.querySelectorAll('.career-cell').forEach(cell => {
+  cell.addEventListener('click', () => {
+    cell.classList.toggle('expanded');
+    if (cell.classList.contains('expanded')) {
+      const name = cell.querySelector('.k-name').childNodes[0].textContent.trim();
+      trackStat('02_진로 카드 열람', name);
+    }
+  });
+});
+} catch (err) { ufsReportError('02 진로 카드', err); }
+
+/* 관련 학과 상세 설명 */
+try {
+const MAJOR_INFO = {
+  '지리학과': {
+    summary:'자연환경과 인간 생활이 서로 어떻게 영향을 주고받는지 공간적 관점에서 탐구하는 학문입니다. 지도·위성영상·통계자료 같은 공간 데이터를 읽고 분석하는 능력을 기릅니다.',
+    courses:'자연지리학, 인문지리학, 지리정보시스템(GIS) 실습, 지역조사법, 지도학',
+    fit:'지도 보는 것을 좋아하고, 우리 동네·도시가 왜 지금 같은 모습이 되었는지 궁금한 학생에게 잘 맞아요.'
+  },
+  '도시공학과': {
+    summary:'도로·상하수도·공원 같은 도시 기반시설을 어떻게 배치하고 운영할지 공학적으로 설계하는 학문입니다. 도시계획 이론과 함께 데이터 분석·시뮬레이션도 배웁니다.',
+    courses:'도시계획개론, 도시설계, 교통공학 기초, 도시데이터분석, 도시재생론',
+    fit:'수학·과학을 좋아하면서 도시 문제를 실제로 설계하고 해결해 보고 싶은 학생에게 추천해요.'
+  },
+  '도시행정학과': {
+    summary:'도시의 여러 문제를 정책과 행정의 관점에서 다루는 학문입니다. 법과 제도를 통해 도시를 어떻게 운영하고, 주민의 목소리를 어떻게 반영할지를 배웁니다.',
+    courses:'도시행정론, 지방자치론, 정책학개론, 주민참여론, 행정법',
+    fit:'사회 이슈에 관심이 많고, 정책을 만들거나 공공기관에서 일하고 싶은 학생에게 잘 맞아요.'
+  },
+  '도시계획·부동산학과': {
+    summary:'토지와 건물을 어떻게 개발·이용할지 계획하는 학문으로, 부동산의 경제적 가치와 관련 법·제도까지 함께 다룹니다.',
+    courses:'토지이용계획론, 부동산개발론, 부동산금융, 부동산법규, 도시경제학',
+    fit:'경제·수학에 흥미가 있고, 개발·투자 같은 실무적인 진로를 고려하는 학생에게 추천해요.'
+  },
+  '건축학과': {
+    summary:'건물과 공간을 설계하는 학문으로, 미적 감각과 함께 구조·시공 같은 공학적 지식도 함께 배웁니다. 국내 대부분 대학이 5년제(인증) 과정으로 운영해요.',
+    courses:'건축설계, 건축구조, 건축시공, 건축법규, 건축역사',
+    fit:'손으로 그리고 만드는 것을 좋아하고, 공간을 새롭게 상상하는 것을 즐기는 학생에게 잘 맞아요.'
+  },
+  '교통공학과': {
+    summary:'사람과 화물의 이동을 효율적이고 안전하게 만드는 방법을 연구하는 학문입니다. 도로·철도·대중교통 체계를 설계하고 분석합니다.',
+    courses:'교통공학개론, 교통계획, 교통시뮬레이션, 대중교통체계론, 교통안전공학',
+    fit:'논리적으로 문제를 푸는 것을 좋아하고, 사람들이 더 편리하게 이동하는 방법을 고민하고 싶은 학생에게 추천해요.'
+  },
+  '환경학과': {
+    summary:'대기·수질·토양 등 환경오염을 분석하고, 생태계를 보전하며 기후변화에 대응하는 방법을 연구하는 학문입니다.',
+    courses:'환경과학개론, 대기환경, 수질환경, 기후변화론, 환경정책',
+    fit:'과학 실험을 좋아하고, 환경·기후 문제 해결에 기여하고 싶은 학생에게 잘 맞아요.'
+  },
+  '사회학과': {
+    summary:'개인과 집단, 사회 구조가 어떻게 작동하는지를 연구하는 학문입니다. 도시의 불평등, 계층, 공동체 문제도 주요 연구 주제예요.',
+    courses:'사회학개론, 사회조사방법론, 도시사회학, 계층론, 공동체론',
+    fit:'사람과 사회현상을 관찰하고 그 이유를 깊이 파고드는 것을 좋아하는 학생에게 추천해요.'
+  },
+  '지역학과': {
+    summary:'특정 국가나 지역의 정치·경제·문화를 종합적으로 연구하여 그 지역 전문가를 길러내는 학문입니다.',
+    courses:'지역연구방법론, 지역경제론, 지역문화론, 국제관계론, 지역어(외국어)',
+    fit:'특정 국가·지역의 문화와 사회에 깊은 관심이 있고, 국제적인 진로를 고려하는 학생에게 잘 맞아요.'
+  },
+  '행정학과': {
+    summary:'정부와 공공기관이 어떻게 조직되고 운영되는지, 정책이 어떻게 만들어지고 평가되는지를 연구하는 학문입니다.',
+    courses:'행정학개론, 정책학, 조직론, 재무행정론, 행정법',
+    fit:'공무원이나 공공기관 취업을 목표로 하거나, 사회 시스템이 돌아가는 원리에 관심 있는 학생에게 추천해요.'
+  },
+  '공공정책학과': {
+    summary:'사회 문제를 진단하고 이를 해결할 정책을 설계·분석·평가하는 방법을 배우는 학문입니다. 데이터에 기반한 정책 분석을 특히 강조해요.',
+    courses:'정책분석론, 정책평가론, 공공경제학, 통계 및 데이터분석, 정책사례연구',
+    fit:'사회 문제에 대한 해결책을 논리적이고 근거 있게 설계하고 싶은 학생에게 잘 맞아요.'
+  },
+  '스마트시티학과': {
+    summary:'사물인터넷(IoT), 인공지능 같은 첨단 기술을 도시 인프라와 서비스에 접목하는 융합 학문입니다. 도시공학과 정보기술을 함께 배워요.',
+    courses:'스마트시티개론, 도시데이터분석, IoT시스템, 인공지능 기초, 디지털도시계획',
+    fit:'기술과 도시 문제를 함께 다루는 융합적인 진로에 관심 있는 학생에게 추천해요.'
+  }
+};
+
+const majorDetail = document.getElementById('majorDetail');
+document.querySelectorAll('.major-tag').forEach(tagBtn => {
+  tagBtn.addEventListener('click', () => {
+    const wasActive = tagBtn.classList.contains('active');
+    document.querySelectorAll('.major-tag').forEach(t => t.classList.remove('active'));
+    if (wasActive) {
+      majorDetail.innerHTML = '학과 이름을 눌러보면 이곳에 어떤 내용을 배우는지 자세한 설명이 나타나요.';
+      return;
+    }
+    tagBtn.classList.add('active');
+    const name = tagBtn.dataset.major;
+    trackStat('03_학과 열람', name);
+    const info = MAJOR_INFO[name];
+    if (!info) return;
+    majorDetail.innerHTML = `
+      <span class="md-name">${name}</span>
+      <p>${info.summary}</p>
+      <p><strong>대표 과목</strong>${info.courses}</p>
+      <p><strong>이런 학생에게 추천</strong>${info.fit}</p>
+    `;
+  });
+});
+} catch (err) { ufsReportError('03 관련 학과', err); }
+
+/* 세특 예시 - 계열별 사이드바 */
+try {
+const RECORD_CATS = {
+  urbaneng: {
+    color:'#2F7A9C',
+    careers:'도시계획가, 스마트시티 기획자, 도시공학 연구원',
+    length:'약 690자',
+    body:`
+      <p>'변화하는 도시' 단원에서 첨단산업과 정보통신기술의 발달이 도시 공간구조에 미치는 영향을 학습하며, 스마트도시 정책이 실제 주민 생활에는 어떻게 체감되는지 의문을 품음.</p>
+      <p>이에 <strong>'사물인터넷(IoT) 기반 실시간 데이터를 활용한 우리 지역 스마트 가로등 최적 배치 연구'</strong>를 주제로 개인 탐구를 수행함. 지방자치단체 공개 데이터 플랫폼에서 유동인구, 보행자 사고 이력, 기존 가로등 위치 자료를 수집하고, <strong>지리정보체계(GIS)를 활용해 야간 유동인구 밀도와 사고 다발 구간을 중첩 분석</strong>하여 우선 설치가 필요한 구간을 도출함.</p>
+      <p>탐구 과정에서 단순 설치 밀도만으로는 실효성이 낮음을 인지하고, 조도 센서 연동형 점멸 제어 방식을 대안으로 제시하여 에너지 효율과 안전성을 동시에 고려하는 설계로 보완함. 탐구 결과를 학급 발표회에서 공유하며 스마트도시 인프라가 기술만이 아니라 지역의 공간적 맥락을 함께 고려해야 함을 설득력 있게 전달함.</p>
+    `,
+    activity:'GIS 중첩분석을 통한 스마트 가로등 우선순위 도출 및 대안 설계',
+    competency:'공간 데이터 통합 분석력, 기술적 대안의 현실적 보완 능력'
+  },
+  society: {
+    color:'#B98A2E',
+    careers:'도시사회 연구원, 지리 교사, 사회정책 연구원',
+    length:'약 660자',
+    body:`
+      <p>'도시 문제와 공간 정의' 단원에서 사회경제적 변화에 따른 거주지 분리 현상을 학습하며, 우리 지역에서도 유사한 공간적 분리가 나타나는지 궁금증을 가짐.</p>
+      <p>이에 <strong>'통계청 마이크로데이터를 활용한 우리 시(市) 임대주택 분포와 학교 배정 구역의 공간적 상관관계 분석'</strong>을 주제로 탐구를 진행함. 행정동별 임대주택 비율과 학업성취도 공개 자료를 공간적으로 결합하고, 두 변수 간의 상관관계를 통계적으로 검증함.</p>
+      <p>탐구 과정에서 <strong>상관관계를 인과관계로 단정하지 않도록</strong> 지역 내 교육 인프라(학원가, 도서관) 분포 자료를 추가로 수집해 다각도로 원인을 재검토하는 신중함을 보임. 분석 결과를 바탕으로 통학구역 조정보다는 교육 인프라의 공간적 재배치가 더 근본적인 해법일 수 있음을 주장하는 소논문을 작성함.</p>
+    `,
+    activity:'임대주택 분포와 학업성취도의 공간적 상관관계 통계 분석',
+    competency:'비판적 사고력, 통계자료 해석 및 다각도 원인 재검토 능력'
+  },
+  policy: {
+    color:'#4F7A5D',
+    careers:'도시행정가, 정책연구원, 공무원(도시계획직)',
+    length:'약 640자',
+    body:`
+      <p>'도시의 미래' 단원에서 도시 공공성을 높이기 위한 시민참여의 중요성을 학습하며, 형식적인 주민 의견 수렴 절차가 실제 정책에 얼마나 반영되는지 문제의식을 가짐.</p>
+      <p>이에 <strong>'우리 지역 주민참여예산제 제안사업 3개년 자료 분석을 통한 시민참여 실효성 진단'</strong>을 주제로 탐구를 수행함. 지자체 공개 자료로 주민 제안사업의 채택 여부와 예산 반영 규모를 정리하여 유형(생활편의, 안전, 환경 등)별 채택률을 비교함.</p>
+      <p>탐구 과정에서 특정 유형의 제안이 반복적으로 채택률이 낮다는 점을 발견하고, 그 원인을 <strong>심사 기준의 모호성</strong>에서 찾아 개선된 심사 체크리스트 시안을 직접 제작함. 이를 지역 청소년의회 발표 자리에서 제안하여 실제 정책 담당자로부터 긍정적인 피드백을 받음.</p>
+    `,
+    activity:'주민참여예산제 3개년 자료 분석 및 개선 심사기준 제작',
+    competency:'공공데이터 분류·분석력, 제도 개선안을 구체화하는 정책적 사고력'
+  },
+  architecture: {
+    color:'#E8622C',
+    careers:'건축가, 부동산 개발전문가, 도시재생 컨설턴트',
+    length:'약 670자',
+    body:`
+      <p>'변화하는 도시' 단원에서 문화자산을 활용한 건축과 도시브랜딩이 도시경관 변화에 미치는 영향을 학습하며, 우리 지역 원도심의 정체성을 살릴 수 있는 개발 방식에 관심을 가짐.</p>
+      <p>이에 <strong>'역사적 건축자산을 활용한 원도심 재생 모델 비교 연구—전면 철거형과 리모델링형의 경제성 비교'</strong>를 주제로 탐구를 진행함. 국내 두 도시의 원도심 재생 사례를 선정해 사업비, 사업 기간, 상권 회복 기간, 원주민 재정착률 등 지표를 비교표로 정리함.</p>
+      <p>탐구 과정에서 <strong>리모델링형이 지역 정체성 유지와 장기적 상권 회복에 유리하다는 결론</strong>에 도달했으나, 사례 수가 적어 일반화하기 어렵다는 한계를 스스로 지적하며 결론의 범위를 신중하게 제한함. 이를 바탕으로 우리 지역 원도심에 적용 가능한 단계적 리모델링 재생 계획안을 제안하는 보고서를 작성함.</p>
+    `,
+    activity:'원도심 재생 사례(철거형 vs 리모델링형) 경제성 비교 분석',
+    competency:'균형적 비교분석력, 결론의 한계를 인지하는 학문적 정직성'
+  }
+};
+
+const CAT_LABELS = {
+  urbaneng:'도시공학 · 스마트시티 계열',
+  society:'지리교육 및 도시사회학 계열',
+  policy:'도시행정 · 공공정책 계열',
+  architecture:'건축 · 부동산개발 계열'
+};
+
+function renderRecord(catId) {
+  const cat = RECORD_CATS[catId];
+  if (!cat) return;
+  document.getElementById('recordMain').innerHTML = `
+    <div class="rm-inner">
+      <div class="career-focus">
+        <span class="cf-tag" style="background:${cat.color}">진로 지향점</span>
+        <span class="cf-list"><strong>${cat.careers}</strong></span>
+      </div>
+      <div class="record-doc">
+        <div class="record-doc-head"><span>💾</span><span>실제 생활기록부 기재 예시 (${cat.length})</span></div>
+        ${cat.body}
+      </div>
+      <div class="analysis-head"><span>📈</span><span>학생의 활동 - 핵심 역량 연관성 분석</span></div>
+      <div class="analysis-grid">
+        <div class="analysis-box">
+          <div class="ab-label">💡 구체적 활동 내용</div>
+          <p>${cat.activity}</p>
+        </div>
+        <div class="analysis-box">
+          <div class="ab-label">⚡ 발휘된 대학인정역량</div>
+          <p>${cat.competency}</p>
+        </div>
+      </div>
+    </div>
+  `;
+  document.querySelectorAll('.record-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.cat === catId);
+  });
+}
+
+document.querySelectorAll('.record-tab').forEach(tab => {
+  tab.addEventListener('click', () => renderRecord(tab.dataset.cat));
+});
+renderRecord('urbaneng');
+} catch (err) { ufsReportError('05 세특 예시', err); }
+
+/* ---------- 클릭 통계 패널 ---------- */
+try {
+const statsFab = document.getElementById('statsFab');
+const statsOverlay = document.getElementById('statsOverlay');
+const statsClose = document.getElementById('statsClose');
+const statsBody = document.getElementById('statsBody');
+const statsCopy = document.getElementById('statsCopy');
+const statsReset = document.getElementById('statsReset');
+
+const STATS_SECTION_ORDER = ['02_진로 카드 열람', '03_학과 열람', '04_키워드 선택', '04_추천받기 클릭'];
+
+function getStats() {
+  try {
+    return JSON.parse(localStorage.getItem(STATS_KEY) || '{}');
+  } catch (e) {
+    return {};
+  }
+}
+
+function renderStats() {
+  const stats = getStats();
+  let html = '';
+  STATS_SECTION_ORDER.forEach(section => {
+    const entries = Object.entries(stats[section] || {}).sort((a, b) => b[1] - a[1]);
+    html += `<div class="stats-section"><div class="stats-section-title">${section}</div>`;
+    if (entries.length === 0) {
+      html += `<p style="font-size:13px;color:var(--ink-soft);">아직 기록된 클릭이 없어요.</p>`;
+    } else {
+      const max = entries[0][1];
+      entries.forEach(([label, count]) => {
+        const pct = Math.max(6, Math.round((count / max) * 100));
+        html += `
+          <div class="stats-row">
+            <span class="sr-label">${label}</span>
+            <span class="sr-bar"><span class="sr-bar-fill" style="width:${pct}%"></span></span>
+            <span class="sr-count">${count}</span>
+          </div>`;
+      });
+    }
+    html += `</div>`;
+  });
+  statsBody.innerHTML = html;
+}
+
+function statsToText() {
+  const stats = getStats();
+  let lines = [`「도시의 미래 탐구」 클릭 통계 — ${new Date().toLocaleString('ko-KR')}`, ''];
+  STATS_SECTION_ORDER.forEach(section => {
+    lines.push(`[${section}]`);
+    const entries = Object.entries(stats[section] || {}).sort((a, b) => b[1] - a[1]);
+    if (entries.length === 0) {
+      lines.push('  (기록 없음)');
+    } else {
+      entries.forEach(([label, count]) => lines.push(`  ${label} : ${count}`));
+    }
+    lines.push('');
+  });
+  return lines.join('\n');
+}
+
+statsFab.addEventListener('click', () => {
+  renderStats();
+  statsOverlay.classList.add('open');
+});
+statsClose.addEventListener('click', () => statsOverlay.classList.remove('open'));
+statsOverlay.addEventListener('click', (e) => {
+  if (e.target === statsOverlay) statsOverlay.classList.remove('open');
+});
+
+statsCopy.addEventListener('click', async () => {
+  const text = statsToText();
+  try {
+    await navigator.clipboard.writeText(text);
+    statsCopy.textContent = '복사됨 ✓';
+  } catch (e) {
+    window.prompt('아래 내용을 직접 복사하세요 (Ctrl+C)', text);
+  }
+  setTimeout(() => { statsCopy.textContent = '텍스트로 복사'; }, 1600);
+});
+
+statsReset.addEventListener('click', () => {
+  if (window.confirm('통계를 정말 초기화할까요? 되돌릴 수 없어요.')) {
+    localStorage.removeItem(STATS_KEY);
+    renderStats();
+  }
+});
+} catch (err) { ufsReportError('클릭 통계 패널', err); }
+</script>
+</body>
+</html>
